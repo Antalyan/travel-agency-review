@@ -57,7 +57,7 @@ export function AgencyDetailPage() {
     useEffect(() => {
         // TODO: change url
         let tmpurl = 'http://localhost:4000/doctors?'
-        const names = ["travelTypes", "countries", "ratings"];
+        const names = ["traveltype", "destination", "rating"];
         const states = [travelTypes, countries, ratings];
         for (let i = 0; i < names.length; i++) {
                 // @ts-ignore
@@ -129,6 +129,7 @@ export function AgencyDetailPage() {
                         <TextField
                             {...params}
                             label="Filter by country"
+                            name={"destination"}
                             inputProps={{
                                 ...params.inputProps,
                                 autoComplete: 'new-password', // disable autocomplete and autofill
@@ -161,7 +162,7 @@ export function AgencyDetailPage() {
                     options={RATINGS}
                     sx={{width: 200}}
                     renderInput={(params) =>
-                        <TextField {...params} name={"travelType"} label={"Filter by rating"}/>}
+                        <TextField {...params} name={"rating"} label={"Filter by rating"}/>}
                     onChange={(event, newValue) => {
                         setRatings([
                             ...newValue
