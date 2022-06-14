@@ -8,7 +8,7 @@ import Menu from "@mui/material/Menu";
 import {FilterMenu} from "./FilterMenu";
 import {MAX_WIDTH} from "../../utils/data";
 
-type mainFilter = { name?: string, destination?: string, travelType?: string }
+export type mainFilter = { name?: string, destination?: string, travelType?: string }
 
 export interface IPanelSetter {
     filter: mainFilter;

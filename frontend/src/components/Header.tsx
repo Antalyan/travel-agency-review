@@ -24,7 +24,7 @@ export default function Header() {
                     >
                         <strong>Traview</strong>
                     </Typography>
-                    <Box display="flex"
+                    <Box display={{xs: "none", md: "flex"}}
                          justifyContent="center"
                          alignItems="center">
                         <Typography

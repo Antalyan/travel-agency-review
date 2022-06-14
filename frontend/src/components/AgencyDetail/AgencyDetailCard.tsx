@@ -32,10 +32,10 @@ export function AgencyDetailCard({
     return (
         <Grid container justifyContent={"center"} maxWidth={{md: MAX_WIDTH}} marginLeft={{md: "auto"}}
               marginRight={{md: "auto"}}>
-            <Grid item xs={11} marginBottom={2}>
-                <Grid container rowSpacing={1}
+                <Grid container item xs={11}  rowSpacing={1}
                       columnSpacing={{xs: 0}}
                       justifyContent={"center"}
+                      marginBottom={2}
                 >
                     <Grid item xs={8} md={10}>
                         <Typography sx={{m: 2}}
@@ -68,7 +68,7 @@ export function AgencyDetailCard({
                                 <Typography variant="h6"
                                             align="left"
                                             color="text.primary"
-                                >OVERALL
+                                >OVERALL RATING
                                 </Typography>
                             </Stack>
                             <Divider/>
@@ -94,7 +94,7 @@ export function AgencyDetailCard({
                             <HomeIcon fontSize={"medium"}/>
                             <Typography
                             variant={"h6"}>
-                                Adresa
+                                Address
                             </Typography>
                         </Stack>
                         <Stack direction={"column"} alignItems={"flex-end"}>
@@ -106,6 +106,8 @@ export function AgencyDetailCard({
                         </Stack>
                     </Grid>
                 </Grid>
+            <Grid item xs={11}>
+                <Divider/>
             </Grid>
         </Grid>
     )

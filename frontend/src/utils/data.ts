@@ -6,6 +6,8 @@ export const GRADIENT: string = 'radial-gradient(circle, rgba(225,233,238,1) 0%,
 export const MAX_WIDTH: number = 960
 export const REVIEW_CATEGORIES: string[] = ["Selling vacation", "Transfer to destination", "Transfer to hotel",
     "Communication with client", "Delegate in destination", "Trips", "Overall satisfaction"]
+export const RATINGS: number[] = [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5]
+
 
 // MOCK DATA
 

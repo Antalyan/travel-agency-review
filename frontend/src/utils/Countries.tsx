@@ -3,13 +3,18 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
-export default function CountrySelect() {
+export interface ICountrySelectProps {
+    multiple?: boolean
+}
+
+export default function CountrySelect({multiple}: ICountrySelectProps) {
     return (
         <Autocomplete
             id="country-select"
             sx={{width: 200}}
-            options={countries}
+            options={COUNTRIES}
             autoHighlight
+            multiple={multiple}
             getOptionLabel={(option) => option.label}
             renderOption={(props, option) => (
                 <Box component="li" sx={{'& > img': {mr: 2, flexShrink: 0}}} {...props}>
@@ -37,7 +42,7 @@ export default function CountrySelect() {
     );
 }
 
-interface CountryType {
+export interface ICountryType {
     code: string;
     label: string;
     phone: string;
@@ -45,7 +50,7 @@ interface CountryType {
 }
 
 // From https://bitbucket.org/atlassian/atlaskit-mk-2/raw/4ad0e56649c3e6c973e226b7efaeb28cb240ccb0/packages/core/select/src/data/countries.js
-const countries: readonly CountryType[] = [
+export const COUNTRIES: readonly ICountryType[] = [
     {code: 'AD', label: 'Andorra', phone: '376'},
     {
         code: 'AE',

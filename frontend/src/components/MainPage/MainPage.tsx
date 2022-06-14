@@ -6,13 +6,14 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import BeachImage from "../../images/beach.jpg";
 import {SearchPanel} from "./SearchPanel";
+import {mainFilter} from "./SearchPanel";
 import {Footer} from "../Footer";
 import {createTheme} from "@mui/material/styles";
 import {AgencyOverviewCard, IAgencyOverviewCard} from "./AgencyOverviewCard";
 import {AGENCIES, MAX_WIDTH} from "../../utils/data";
 
 export function MainPage() {
-    const [dataFilter, setDataFilter] = useState<{ name?: string, destination?: string, travelType?: string }>({
+    const [dataFilter, setDataFilter] = useState<mainFilter>({
         name: undefined,
         destination: undefined,
         travelType: undefined
@@ -97,7 +98,6 @@ export function MainPage() {
                 </Grid>
                 <Grid item xs={12}>
                     <Typography sx={{m: 2}}
-                                component="h2"
                                 variant="h3"
                                 align="center"
                                 color="text.primary"
