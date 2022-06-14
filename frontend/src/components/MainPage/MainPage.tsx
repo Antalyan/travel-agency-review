@@ -86,10 +86,11 @@ export function MainPage() {
                                 color="text.secondary"
                     >
                         <Typography variant={"h4"}><strong>Travelled recently? </strong></Typography><br/>
-                        Share your experience with others to help them enjoy the
-                        best holidays ever! Praise those who improved your experience and shame those who offer
-                        low quality services. If issues are shared and known, travel agencies will have no other option
-                        than to resolve them, so the quality of your future holidays is in your hands!<br/>
+                        <strong>Share</strong> your experience with others to help them enjoy the
+                        best holidays ever!<br/> <strong>Praise</strong> those who improved your experience and
+                        <strong> criticise</strong> those who offer low quality services. If issues are shared and known,
+                        travel agencies will have no other option than to resolve them, so the <strong>
+                        quality of your future holidays is in your hands!</strong><br/>
                         <Typography variant={"h4"} mt={2}><strong>Going to travel? </strong></Typography><br/>
                         Read other's experiences in advance to avoid disappointment!
                     </Typography>
