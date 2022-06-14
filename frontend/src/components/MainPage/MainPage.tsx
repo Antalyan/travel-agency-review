@@ -18,32 +18,32 @@ export function MainPage() {
         travelType: undefined
     });
 
-    // // TODO: update URL
-    // const [url, setUrl] = useState('http://localhost:4000/doctors');
-    //
-    // useEffect(() => {
-    //     // TODO: update URL
-    //     let tmpurl = 'http://localhost:4000/doctors'
-    //     if (dataFilter.name !== undefined || dataFilter.destination !== undefined || dataFilter.travelType !== undefined) {
-    //         tmpurl = tmpurl + "?";
-    //     }
-    //     if (dataFilter.name !== undefined) {
-    //         tmpurl = tmpurl + "name=" + dataFilter.name
-    //     }
-    //     if (dataFilter.destination !== undefined) {
-    //         if (tmpurl.includes("=")) {
-    //             tmpurl = tmpurl + "&"
-    //         }
-    //         tmpurl = tmpurl + "destination=" + dataFilter.destination
-    //     }
-    //     if (dataFilter.travelType != null) {
-    //         if (tmpurl.includes("=")) {
-    //             tmpurl = tmpurl + "&"
-    //         }
-    //         tmpurl = tmpurl + "travelType=" + dataFilter.travelType
-    //     }
-    //     setUrl(tmpurl);
-    // }, [dataFilter])
+    // TODO: update URL
+    const [url, setUrl] = useState('http://localhost:4000/doctors');
+
+    useEffect(() => {
+        // TODO: update URL
+        let tmpurl = 'http://localhost:4000/doctors'
+        if (dataFilter.name !== undefined || dataFilter.destination !== undefined || dataFilter.travelType !== undefined) {
+            tmpurl = tmpurl + "?";
+        }
+        if (dataFilter.name !== undefined) {
+            tmpurl = tmpurl + "name=" + dataFilter.name
+        }
+        if (dataFilter.destination !== undefined) {
+            if (tmpurl.includes("=")) {
+                tmpurl = tmpurl + "&"
+            }
+            tmpurl = tmpurl + "destination=" + dataFilter.destination
+        }
+        if (dataFilter.travelType != null) {
+            if (tmpurl.includes("=")) {
+                tmpurl = tmpurl + "&"
+            }
+            tmpurl = tmpurl + "travelType=" + dataFilter.travelType
+        }
+        setUrl(tmpurl);
+    }, [dataFilter])
 
     // TODO: load data
     // const {data, error} = useSWR(url, fetcher);
@@ -79,12 +79,6 @@ export function MainPage() {
                 <Grid item xs={12}>
                     {/*TODO: check and fix image*/}
                     <img src={BeachImage} alt='Beach' width="100%"/>
-                    {/*<Box display="flex" height={{xs:"10rem", md:"13rem"}}*/}
-                    {/*     alignItems="right"*/}
-                    {/*     margin={0}*/}
-                    {/*     justifyContent="right">*/}
-                    {/*   */}
-                    {/*</Box>*/}
                 </Grid>
                 <Grid item xs={12}>
                     <Typography sx={{m: 2}}

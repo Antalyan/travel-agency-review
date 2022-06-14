@@ -4,12 +4,13 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import {Link} from "@mui/material";
 import Logo from "../images/logo-new.jpg"
+import {GRADIENT} from "../utils/data";
 
 export default function Header() {
     return (
         <AppBar position="static" sx={{
             color: 'white',
-            background: 'radial-gradient(circle, rgba(225,233,238,1) 0%, rgba(0,137,255,1) 100%)'
+            background: GRADIENT
         }}>
             <Toolbar>
                 <Box sx={{flexGrow: 1, display: "flex"}} marginRight={"auto"} marginLeft={"auto"} maxWidth={960}>

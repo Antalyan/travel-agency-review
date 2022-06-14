@@ -26,17 +26,17 @@ export function AgencyOverviewCard({id, name, insuranceValid, overallScore, tota
                              columnSpacing={{xs: 0}}
                              justifyContent={"center"}
                        >
-                           <Grid item xs={8}>
+                           <Grid item xs={8} md={10}>
                                <Typography sx={{m: 2}}
                                            pl={2}
-                                           variant="h3"
+                                           variant="h4"
                                            color="text.primary"
                                            gutterBottom
                                            fontWeight="bold"
                                > {name}
                                </Typography>
                            </Grid>
-                           <Grid item xs={4} container direction="column" paddingRight={4}
+                           <Grid item xs={4} md={2} container direction="column" paddingRight={4}
                                  alignItems={"flex-end"} marginTop={3}>
                                   <Stack direction={"row"} spacing={2}>
                                       <Typography variant="body2"
@@ -47,7 +47,7 @@ export function AgencyOverviewCard({id, name, insuranceValid, overallScore, tota
                                       {insuranceValid ? <DoneOutlineIcon sx={{color: "green"}}/> : <CancelOutlinedIcon sx={{color: "red"}}/>}
                                   </Stack>
                            </Grid>
-                           <Grid item xs={8} pl={4}>
+                           <Grid item xs={8} md={10} pl={4}>
                                <Rating name="main-rating" value={overallScore} precision={0.5} readOnly
                                        sx={{color: "primary.main"}}/>
                                <Typography variant="body2"
@@ -56,8 +56,8 @@ export function AgencyOverviewCard({id, name, insuranceValid, overallScore, tota
                                >based on {totalReviews} reviews
                                </Typography>
                            </Grid>
-                           <Grid item xs={4} container direction="column" paddingRight={4}
-                                 alignItems={"flex-end"} marginTop={3}>
+                           <Grid item xs={4} md={2} container direction="column" paddingRight={4}
+                                 alignItems={"flex-end"} marginTop={1}>
                                {/*TODO: fix href*/}
                                <Button href={`/doctor/${id}`} variant='contained' color={'primary'}
                                        size={"large"}>DETAIL</Button>

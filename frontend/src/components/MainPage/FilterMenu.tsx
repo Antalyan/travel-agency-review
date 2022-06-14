@@ -6,7 +6,7 @@ import {IPanelSetter} from "./SearchPanel";
 import useSWR from "swr";
 import {fetcher} from "../../utils/fetcher";
 import CountrySelect from "../../utils/Countries";
-import {TRAVEL_TYPES} from "../../utils/data";
+import {GRADIENT, TRAVEL_TYPES} from "../../utils/data";
 
 export interface IFilter {
     destination: string,
@@ -24,18 +24,12 @@ export function FilterMenu({filter, setFilter}: IPanelSetter) {
         });
     }
 
-    // TODO: update url
-    const url = 'http://localhost:4000/doctors-locations'
-    const {data, error} = useSWR( url, fetcher);
-    if (error) console.log(error.message)
-    if (!data) return <div>Loading...</div>;
-    if (data) console.log(data)
-
     return (
         <>
             <Typography variant="h5" gutterBottom component="div" align={"center"}
-                        bgcolor={"primary.main"} color={"common.white"}
-                        padding={2}>
+                        color={"common.black"} padding={2}
+                        sx={{background: GRADIENT}}
+            >
                 Nastavení filtru
             </Typography>
             <form onSubmit={handleSubmit(onSubmit)}>
