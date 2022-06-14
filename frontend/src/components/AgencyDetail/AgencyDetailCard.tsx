@@ -87,16 +87,17 @@ export function AgencyDetailCard({
                         </Stack>
                     </Grid>
                     <Grid item md={4} container direction="column" pr={4}
-                          alignItems={"center"} marginTop={5}
+                          alignItems={"flex-end"} marginTop={5}
                           display={{xs: "none", md: "block"}}
                     >
-                        <Stack direction={"row"} spacing={1}>
-                            <HomeIcon/>
-                            <Typography>
+                        <Stack direction={"row"} spacing={1} justifyContent={"flex-end"} alignItems={"center"}>
+                            <HomeIcon fontSize={"medium"}/>
+                            <Typography
+                            variant={"h6"}>
                                 Adresa
                             </Typography>
                         </Stack>
-                        <Stack direction={"column"} alignItems={"flex-start"}>
+                        <Stack direction={"column"} alignItems={"flex-end"}>
                             {address.split(",").map((part) => {
                                 return <Typography key={part} display={"block"}>
                                     {part}
