@@ -90,13 +90,14 @@ export function MainPage() {
                     <Typography sx={{m: 2}}
                                 align="left"
                                 color="text.secondary"
-                                gutterBottom
                     >
-                        <strong>Travelled recently? </strong>Share your experience with others to help them enjoy the
-                        best holidays ever! Praise those who improved your experiences and shame those who offer
+                        <Typography variant={"h4"}><strong>Travelled recently? </strong></Typography><br/>
+                        Share your experience with others to help them enjoy the
+                        best holidays ever! Praise those who improved your experience and shame those who offer
                         low quality services. If issues are shared and known, travel agencies will have no other option
                         than to resolve them, so the quality of your future holidays is in your hands!<br/>
-                        <strong>Going to travel? </strong>Read other's experiences in advance to avoid disappointment!
+                        <Typography variant={"h4"} mt={2}><strong>Going to travel? </strong></Typography><br/>
+                        Read other's experiences in advance to avoid disappointment!
                     </Typography>
                 </Grid>
                 <Grid item xs={12}>
