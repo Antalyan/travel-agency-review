@@ -6,6 +6,7 @@ import {useState} from "react";
 import {FilterList} from "@mui/icons-material";
 import Menu from "@mui/material/Menu";
 import {FilterMenu} from "./FilterMenu";
+import {MAX_WIDTH} from "../../utils/data";
 
 type mainFilter = { name?: string, destination?: string, travelType?: string }
 
@@ -38,7 +39,7 @@ export function SearchPanel({filter, setFilter}: IPanelSetter) {
     return (
         <form onSubmit={onSubmit}>
             <Box display={"flex"} alignItems={"center"} justifyContent={"space-between"} marginLeft={{md: "auto"}}
-                 marginRight={{md: "auto"}} maxWidth={{md: 960}}>
+                 marginRight={{md: "auto"}} maxWidth={{md: MAX_WIDTH}}>
                 <Controller
                     control={control}
                     name="name"

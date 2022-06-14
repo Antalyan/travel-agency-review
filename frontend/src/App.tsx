@@ -8,6 +8,7 @@ import {MainPage} from './components/MainPage/MainPage';
 
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {NotFoundPage} from "./NotFoundPage";
+import {AgencyDetailPage} from "./components/AgencyDetail/AgencyDetailPage";
 
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
@@ -19,6 +20,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainPage/>}/>
+        <Route path="/agency/:id" element={<AgencyDetailPage/>}/>
         <Route path="*" element={<NotFoundPage/>}/>
       </Routes>
     </BrowserRouter>

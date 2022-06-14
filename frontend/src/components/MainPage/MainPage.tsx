@@ -8,8 +8,8 @@ import BeachImage from "../../images/beach.jpg";
 import {SearchPanel} from "./SearchPanel";
 import {Footer} from "../Footer";
 import {createTheme} from "@mui/material/styles";
-import {AgencyOverviewCard, IAgencyOverviewCard} from "../AgencyCard";
-import {AGENCIES} from "../../utils/data";
+import {AgencyOverviewCard, IAgencyOverviewCard} from "./AgencyOverviewCard";
+import {AGENCIES, MAX_WIDTH} from "../../utils/data";
 
 export function MainPage() {
     const [dataFilter, setDataFilter] = useState<{ name?: string, destination?: string, travelType?: string }>({
@@ -75,7 +75,7 @@ export function MainPage() {
             }}
         >
             <Grid container rowSpacing={0} columnSpacing={{xs: 1}} marginLeft={{md: "auto"}}
-                  marginRight={{md: "auto"}} maxWidth={{md: 960}}>
+                  marginRight={{md: "auto"}} maxWidth={{md: MAX_WIDTH}}>
                 <Grid item xs={12}>
                     {/*TODO: check and fix image*/}
                     <img src={BeachImage} alt='Beach' width="100%"/>

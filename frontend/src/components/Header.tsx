@@ -4,7 +4,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import {Link} from "@mui/material";
 import Logo from "../images/logo-new.jpg"
-import {GRADIENT} from "../utils/data";
+import {GRADIENT, MAX_WIDTH} from "../utils/data";
 
 export default function Header() {
     return (
@@ -13,7 +13,7 @@ export default function Header() {
             background: GRADIENT
         }}>
             <Toolbar>
-                <Box sx={{flexGrow: 1, display: "flex"}} marginRight={"auto"} marginLeft={"auto"} maxWidth={960}>
+                <Box sx={{flexGrow: 1, display: "flex"}} marginRight={"auto"} marginLeft={"auto"} maxWidth={MAX_WIDTH}>
                     <Link href={"/"} underline="hover" marginTop={2}>
                         <img src={Logo} alt="Logo" width="60" height="60"/>
                     </Link>

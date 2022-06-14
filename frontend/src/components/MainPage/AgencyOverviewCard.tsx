@@ -7,6 +7,7 @@ import Profile from "../../images/mock_profile.jpg";
 import DoneOutlineIcon from '@mui/icons-material/DoneOutline';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import {Card, CardContent, Container, Rating, Stack} from "@mui/material";
+import {MAX_WIDTH} from "../../utils/data";
 
 export interface IAgencyOverviewCard {
     id: number,
@@ -18,7 +19,7 @@ export interface IAgencyOverviewCard {
 
 export function AgencyOverviewCard({id, name, insuranceValid, overallScore, totalReviews}: IAgencyOverviewCard) {
     return (
-       <Grid container justifyContent={"center"} maxWidth={{md: 960}} marginLeft={{md: "auto"}} marginRight={{md: "auto"}}>
+       <Grid container justifyContent={"center"} maxWidth={{md: MAX_WIDTH}} marginLeft={{md: "auto"}} marginRight={{md: "auto"}}>
            <Grid item xs={11} marginBottom={2}>
                <Card>
                    <CardContent>
@@ -58,8 +59,7 @@ export function AgencyOverviewCard({id, name, insuranceValid, overallScore, tota
                            </Grid>
                            <Grid item xs={4} md={2} container direction="column" paddingRight={4}
                                  alignItems={"flex-end"} marginTop={1}>
-                               {/*TODO: fix href*/}
-                               <Button href={`/doctor/${id}`} variant='contained' color={'primary'}
+                               <Button href={`/agency/${id}`} variant='contained' color={'primary'}
                                        size={"large"}>DETAIL</Button>
                            </Grid>
                        </Grid>
