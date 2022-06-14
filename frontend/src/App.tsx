@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from 'react';
+import CssBaseline from '@mui/material/CssBaseline';
+import GlobalStyles from '@mui/material/GlobalStyles';
+import {ThemeProvider} from "@mui/material";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import {createTheme, responsiveFontSizes} from '@mui/material/styles';
+import {MainPage} from './components/MainPage/MainPage';
+
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {NotFoundPage} from "./NotFoundPage";
+
+let theme = createTheme();
+theme = responsiveFontSizes(theme);
+
+export default function App() {
+  return <ThemeProvider theme={theme}>
+    <GlobalStyles styles={{ul: {margin: 0, padding: 0, listStyle: 'none'},}}/>
+    <CssBaseline/>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainPage/>}/>
+        <Route path="*" element={<NotFoundPage/>}/>
+      </Routes>
+    </BrowserRouter>
+  </ThemeProvider>
 }
-
-export default App;
