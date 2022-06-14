@@ -49,7 +49,7 @@ export function SearchPanel({filter, setFilter}: IPanelSetter) {
                             name={'search'}
                             variant="outlined"
                             placeholder="SEARCH TRAVEL AGENCY"
-                            size="small" sx={{marginLeft: 2, width: "80%"}}
+                            size="small" sx={{marginLeft: 5, width: "85%"}}
                         />
                     )}
                 />
@@ -57,6 +57,7 @@ export function SearchPanel({filter, setFilter}: IPanelSetter) {
                     <SearchIcon sx={{fill: "blue", fontSize: "100%", padding: 0}}/>
                 </IconButton>
                 <IconButton
+                    sx={{mr: 4}}
                     size="large"
                     aria-label="filter area"
                     aria-controls="menu-filter"
