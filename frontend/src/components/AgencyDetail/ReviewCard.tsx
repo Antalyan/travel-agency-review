@@ -27,13 +27,13 @@ export function ReviewCard({author, title, groupSize, travelType, destination, m
     const [detailedState, setDetailedState] = useState(false);
     return (
         <Grid container justifyContent={"center"} maxWidth={{md: MAX_WIDTH}} marginLeft={{md: "auto"}}
-              marginRight={{md: "auto"}}>
+              marginRight={{md: "auto"}} marginTop={2}>
             <Grid container item xs={11} rowSpacing={1}
                   columnSpacing={{xs: 0}}
                   marginBottom={2}
                   marginLeft={4}
             >
-                <Grid item xs={12} md={10} container>
+                <Grid item xs={12} md={10} container pr={4}>
                     <Typography variant="h4"
                                 color="text.primary"
                                 gutterBottom
@@ -43,62 +43,49 @@ export function ReviewCard({author, title, groupSize, travelType, destination, m
                 </Grid>
                 <Grid item xs={12} md={3} container>
                     <Stack direction={"row"} spacing={1}>
-                        <PersonOutlinedIcon color={"primary"}/>
-                        <Typography display={"block"}>
-                            <strong>Author:</strong> {author === undefined ? "Anonymous" : author}
+                        <PersonOutlinedIcon color={author === undefined ? "disabled" : "primary"}/>
+                        <Typography display={"block"} color={author === undefined ? "text.secondary" : "black"}>
+                            <strong>Author:</strong> {author ?? ""}
                         </Typography>
                     </Stack>
                 </Grid>
-                <Grid item xs={12} md={3} container visibility={groupSize !== undefined ? "visible" : "hidden"}>
+                <Grid item xs={12} md={3} container>
                     <Stack direction={"row"} spacing={1}>
-                        <GroupOutlinedIcon color={"primary"}/>
-                        <Typography display={"block"}>
-                            <strong>Group size:</strong> {groupSize}
+                        <GroupOutlinedIcon color={groupSize === undefined ? "disabled" : "primary"}/>
+                        <Typography display={"block"} color={groupSize === undefined ? "text.secondary" : "black"}>
+                            <strong>Group size:</strong> {groupSize ?? ""}
                         </Typography>
                     </Stack>
                 </Grid>
-                <Grid item xs={12} md={3} container direction="row"
-                      visibility={(month !== undefined || year !== undefined) ? "visible" : "hidden"}>
+                <Grid item xs={12} md={3} container direction="row">
                     <Stack direction={"row"} spacing={1}>
-                        <EventOutlinedIcon color={"primary"}/>
+                        <EventOutlinedIcon color={month === undefined && year === undefined ? "disabled" : "primary"}/>
                         {/*TODO: format time*/}
-                        <Typography display={"block"}>
-                            <strong>Visited in:</strong> {month + " " + year}
+                        <Typography display={"block"} color={month === undefined && year === undefined ? "text.secondary" : "black"}>
+                            <strong>Visited in:</strong> {month != undefined || year != undefined ?
+                            ((month === undefined ? "" : month + " ") + year ?? "") : ""}
                         </Typography>
                     </Stack>
                 </Grid>
                 <Grid item md={3}/>
 
-                <Grid item xs={12} md={3} container visibility={travelType !== undefined ? "visible" : "hidden"}>
+                <Grid item xs={12} md={3} container>
                     <Stack direction={"row"} spacing={1}>
-                        <FlightOutlinedIcon color={"primary"}/>
-                        <Typography display={"block"}>
-                            <strong>Travel type:</strong> {travelType}
+                        <FlightOutlinedIcon color={travelType === undefined ? "disabled" : "primary"}/>
+                        <Typography display={"block"} color={travelType === undefined ? "text.secondary" : "black"}>
+                            <strong>Travel type:</strong> {travelType ?? ""}
                         </Typography>
                     </Stack>
                 </Grid>
 
-                <Grid item xs={12} md={6} container visibility={destination !== undefined ? "visible" : "hidden"}>
+                <Grid item xs={12} md={6} container>
                     <Stack direction={"row"} spacing={1}>
-                        <LocationOnOutlinedIcon color={"primary"}/>
-                        <Typography display={"block"}>
-                            <strong>Destination:</strong> {destination}
+                        <LocationOnOutlinedIcon color={destination === undefined ? "disabled" : "primary"}/>
+                        <Typography display={"block"} color={destination === undefined ? "text.secondary" : "black"}>
+                            <strong>Destination:</strong> {destination ?? ""}
                         </Typography>
                     </Stack>
                 </Grid>
-
-                {/*{scores.map((score, index) => {*/}
-                {/*    return <Stack direction={"row"} alignItems={"center"} spacing={2} key={"score" + index}>*/}
-                {/*        <Rating name={"rating" + index} value={score} precision={0.5}*/}
-                {/*                readOnly size={"medium"}*/}
-                {/*                sx={{color: "primary.main"}}/>*/}
-                {/*        <Typography variant="body1"*/}
-                {/*                    align="left"*/}
-                {/*                    color="text.primary"*/}
-                {/*        >{REVIEW_CATEGORIES[index]}*/}
-                {/*        </Typography>*/}
-                {/*    </Stack>*/}
-                {/*})}*/}
 
                 <Grid item xs={12} md={4} mt={2}>
                     <Stack direction={"row"} spacing={1}>
@@ -108,7 +95,7 @@ export function ReviewCard({author, title, groupSize, travelType, destination, m
                                     align="left"
                                     color="text.primary"
                         >
-                            Overall satisfaction
+                            <strong>Overall satisfaction</strong>
                         </Typography>
                     </Stack>
                 </Grid>
@@ -122,7 +109,7 @@ export function ReviewCard({author, title, groupSize, travelType, destination, m
                 {detailedState && scores.slice(1).map((score, ind) => {
                     const index = ind + 1;
                     return <>
-                        {(score != undefined) && <Grid item xs={12} mt={2}>
+                        {(score != undefined) && <Grid item xs={10} mt={2}>
                             <Stack direction={"row"} spacing={1}>
                                 <Rating name={"rating" + index} value={score} precision={0.5} readOnly
                                         size={"small"} sx={{color: "primary.main"}}/>
@@ -130,7 +117,7 @@ export function ReviewCard({author, title, groupSize, travelType, destination, m
                                             align="left"
                                             color="text.primary"
                                 >
-                                    {REVIEW_CATEGORIES[index]}
+                                    <strong>{REVIEW_CATEGORIES[index]}</strong>
                                 </Typography>
                             </Stack>
                         </Grid>}
@@ -142,7 +129,6 @@ export function ReviewCard({author, title, groupSize, travelType, destination, m
                         </Grid>
                     </>
                 })}
-
 
                 <Grid item xs={12} md={2} container justifyContent={"right"} pr={4}>
                     <Stack direction={"column"} justifyContent={"flex-end"}>
