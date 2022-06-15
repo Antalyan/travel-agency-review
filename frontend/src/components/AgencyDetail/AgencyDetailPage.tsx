@@ -110,7 +110,7 @@ export function AgencyDetailPage() {
                         Reviews
                     </Typography>
                 </Grid>
-                <Grid item xs={12} ml={4}>
+                <Grid item xs={12} ml={4} mr={2}>
                    <Box>
                        <CreateOutlinedIcon display={"inline"} fontSize={"small"} color={"primary"} sx={{mr:1}}/>
                        {/*TODO: change href*/}
