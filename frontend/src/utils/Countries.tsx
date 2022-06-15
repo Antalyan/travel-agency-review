@@ -2,19 +2,68 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import {Control, Controller, FieldValues} from "react-hook-form";
 
 export interface ICountrySelectProps {
-    multiple?: boolean
+    control: Control<any, any>,
 }
 
-export default function CountrySelect({multiple}: ICountrySelectProps) {
+export interface ICountryType {
+    code: string;
+    label: string;
+    phone: string;
+    suggested?: boolean;
+}
+
+export function CountryController({control}: ICountrySelectProps) {
+    return (
+        <Controller
+            render={(props) => (
+                <Autocomplete
+                    {...props}
+                    id="country-select"
+                    sx={{width: 200}}
+                    options={COUNTRIES}
+                    autoHighlight
+                    getOptionLabel={(option) => option.label}
+                    renderOption={(props, option) => (
+                        <Box component="li" sx={{'& > img': {mr: 2, flexShrink: 0}}} {...props}>
+                            <img
+                                loading="lazy"
+                                width="20"
+                                src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
+                                srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
+                                alt=""
+                            />
+                            {option.label}
+                        </Box>
+                    )}
+                    onChange={(_, data) => props.field.onChange(data)}
+                    renderInput={(params) => (
+                        <TextField
+                            {...params}
+                            name={"destination"}
+                            label="Choose a country"
+                            inputProps={{
+                                ...params.inputProps,
+                                autoComplete: 'new-password', // disable autocomplete and autofill
+                            }}
+                        />
+                    )}
+                />
+            )}
+            name={"destination"}
+            control={control}
+        />)
+}
+
+export function CountrySelect() {
     return (
         <Autocomplete
             id="country-select"
             sx={{width: 200}}
             options={COUNTRIES}
             autoHighlight
-            multiple={multiple}
             getOptionLabel={(option) => option.label}
             renderOption={(props, option) => (
                 <Box component="li" sx={{'& > img': {mr: 2, flexShrink: 0}}} {...props}>
@@ -40,13 +89,6 @@ export default function CountrySelect({multiple}: ICountrySelectProps) {
             )}
         />
     );
-}
-
-export interface ICountryType {
-    code: string;
-    label: string;
-    phone: string;
-    suggested?: boolean;
 }
 
 // From https://bitbucket.org/atlassian/atlaskit-mk-2/raw/4ad0e56649c3e6c973e226b7efaeb28cb240ccb0/packages/core/select/src/data/countries.js

@@ -44,6 +44,7 @@ export function MainPage() {
             tmpurl = tmpurl + "travelType=" + dataFilter.travelType
         }
         setUrl(tmpurl);
+        console.log(tmpurl);
     }, [dataFilter])
 
     // TODO: load data
@@ -78,7 +79,6 @@ export function MainPage() {
             <Grid container rowSpacing={0} columnSpacing={{xs: 1}} marginLeft={{md: "auto"}}
                   marginRight={{md: "auto"}} maxWidth={{md: MAX_WIDTH}}>
                 <Grid item xs={12}>
-                    {/*TODO: check and fix image*/}
                     <img src={BeachImage} alt='Beach' width="100%"/>
                 </Grid>
                 <Grid item xs={12}>

@@ -15,7 +15,7 @@ import {AutoSelect} from "../MainPage/AutoSelect";
 import {Controller, useForm} from "react-hook-form";
 import {IFilter} from "../MainPage/FilterMenu";
 import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
-import CountrySelect, {COUNTRIES, ICountryType} from "../../utils/Countries";
+import {CountrySelect, COUNTRIES, ICountryType} from "../../utils/Countries";
 import {useEffect, useState} from "react";
 import {mainFilter} from "../MainPage/SearchPanel";
 import Grid from "@mui/material/Grid";

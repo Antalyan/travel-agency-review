@@ -5,12 +5,12 @@ import {AutoSelect} from "./AutoSelect";
 import {IPanelSetter} from "./SearchPanel";
 import useSWR from "swr";
 import {fetcher} from "../../utils/fetcher";
-import CountrySelect from "../../utils/Countries";
+import {CountryController, ICountryType} from "../../utils/Countries";
 import {GRADIENT, TRAVEL_TYPES} from "../../utils/data";
 
 export interface IFilter {
-    destination: string,
-    travelType: string,
+    destination?: ICountryType,
+    travelType?: string,
 }
 
 export function FilterMenu({filter, setFilter}: IPanelSetter) {
@@ -19,7 +19,7 @@ export function FilterMenu({filter, setFilter}: IPanelSetter) {
         console.log(data);
         setFilter({
             name: filter.name,
-            destination: data.destination,
+            destination: data.destination?.label,
             travelType: data.travelType
         });
     }
@@ -34,7 +34,7 @@ export function FilterMenu({filter, setFilter}: IPanelSetter) {
             </Typography>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Stack spacing={2} margin={2}>
-                    <CountrySelect/>
+                    <CountryController control={control}/>
                     <AutoSelect control={control} id="travel-type-select" name="travelType" label="Travel Type"
                                 options={TRAVEL_TYPES}/>
                     <Grid container justifyContent="center">
