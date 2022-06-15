@@ -8,15 +8,17 @@ import {Autocomplete, Divider, Rating, Stack, Tab, Tabs, TextField} from "@mui/m
 import useSWR from "swr";
 import fetcher from "../../utils/fetcher";
 import {createTheme} from "@mui/material/styles";
-import {AGENCY_DETAIL, MAX_WIDTH, RATINGS, TRAVEL_TYPES} from "../../utils/data";
+import {AGENCY_DETAIL, MAX_WIDTH, RATINGS, REVIEWS, TRAVEL_TYPES} from "../../utils/data";
 import {AgencyDetailCard, IAgencyDetailCard} from "./AgencyDetailCard";
-import {AgencyOverviewCard} from "../MainPage/AgencyOverviewCard";
+import {AgencyOverviewCard, IAgencyOverviewCard} from "../MainPage/AgencyOverviewCard";
 import {AutoSelect} from "../MainPage/AutoSelect";
 import {Controller, useForm} from "react-hook-form";
 import {IFilter} from "../MainPage/FilterMenu";
 import CountrySelect, {COUNTRIES, ICountryType} from "../../utils/Countries";
 import {useEffect, useState} from "react";
 import {mainFilter} from "../MainPage/SearchPanel";
+import Grid from "@mui/material/Grid";
+import {IReview, ReviewCard} from "./ReviewCard";
 
 export type detailFilter = { rating?: string, destination?: string, travelType?: string }
 
@@ -60,21 +62,21 @@ export function AgencyDetailPage() {
         const names = ["traveltype", "destination", "rating"];
         const states = [travelTypes, countries, ratings];
         for (let i = 0; i < names.length; i++) {
+            // @ts-ignore
+            if (states[i]?.length && states[i]?.length > 0) {
+                tmpurl += (names[i] + "=");
                 // @ts-ignore
-                if (states[i]?.length && states[i]?.length > 0) {
-                    tmpurl += (names[i] + "=");
-                    // @ts-ignore
-                    for (const name of states[i]) {
-                        if (i == 1) {
-                            // @ts-ignore
-                            tmpurl += (name.label + "|");
-                        } else {
-                            tmpurl += (name + "|");
-                        }
+                for (const name of states[i]) {
+                    if (i == 1) {
+                        // @ts-ignore
+                        tmpurl += (name.label + "|");
+                    } else {
+                        tmpurl += (name + "|");
                     }
-                    tmpurl = tmpurl.substring(0, tmpurl.length - 1)
-                    tmpurl = tmpurl + "&"
                 }
+                tmpurl = tmpurl.substring(0, tmpurl.length - 1)
+                tmpurl = tmpurl + "&"
+            }
         }
         if (tmpurl[tmpurl.length - 1] == "&" || tmpurl[tmpurl.length - 1] == "=" || tmpurl[tmpurl.length - 1] == "?") {
             tmpurl = tmpurl.substring(0, tmpurl.length - 1)
@@ -105,10 +107,11 @@ export function AgencyDetailPage() {
             {/*    Reviews*/}
             {/*</Typography>*/}
 
-            <Stack direction={{xs: "column", md:"row"}} justifyContent={"flex-start"} spacing={2} mt={2} ml={4}>
+            <Stack direction={{xs: "column", md: "row"}} justifyContent={"space-around"} spacing={2} mt={2} ml={4}
+                   mr={4}>
                 <Autocomplete
                     id="country-select"
-                    sx={{width: 200}}
+                    sx={{width: 280}}
                     options={COUNTRIES}
                     autoHighlight
                     multiple
@@ -147,7 +150,7 @@ export function AgencyDetailPage() {
                     id={id}
                     multiple
                     options={TRAVEL_TYPES}
-                    sx={{width: 200}}
+                    sx={{width: 280}}
                     renderInput={(params) =>
                         <TextField {...params} name={"travelType"} label={"Filter by travel type"}/>}
                     onChange={(event, newValue) => {
@@ -160,7 +163,7 @@ export function AgencyDetailPage() {
                     id={id}
                     multiple
                     options={RATINGS}
-                    sx={{width: 200}}
+                    sx={{width: 280}}
                     renderInput={(params) =>
                         <TextField {...params} name={"rating"} label={"Filter by rating"}/>}
                     onChange={(event, newValue) => {
@@ -169,6 +172,14 @@ export function AgencyDetailPage() {
                         ]);
                     }}/>
             </Stack>
+
+            <Grid container rowSpacing={1} columnSpacing={{xs: 1, sm: 2, md: 3}} margin={1}>
+                {REVIEWS.map((review: IReview, index) => (
+                    <Grid item key={index} xs={12}>
+                        <ReviewCard {...review}/>
+                    </Grid>
+                ))}
+            </Grid>
         </Box>
         <Footer/>
     </>
