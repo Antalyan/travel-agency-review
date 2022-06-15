@@ -34,7 +34,7 @@ export function ReviewCard({author, title, groupSize, travelType, destination, m
                   marginLeft={4}
             >
                 <Grid item xs={12} md={10} container pr={4}>
-                    <Typography variant="h4"
+                    <Typography variant="h5"
                                 color="text.primary"
                                 gutterBottom
                                 fontWeight="bold"

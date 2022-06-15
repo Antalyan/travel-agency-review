@@ -97,15 +97,16 @@ export function AgencyDetailPage() {
             maxWidth={{md: MAX_WIDTH}}
         >
             <AgencyDetailCard {...agency}/>
-            {/*<Typography sx={{m: 2}}*/}
-            {/*            variant="h4"*/}
-            {/*            align="center"*/}
-            {/*            color="text.primary"*/}
-            {/*            gutterBottom*/}
-            {/*            fontWeight="bold"*/}
-            {/*>*/}
-            {/*    Reviews*/}
-            {/*</Typography>*/}
+            <Typography sx={{m: 2}}
+                        pl={2}
+                        variant="h5"
+                        align="left"
+                        color="text.primary"
+                        gutterBottom
+                        fontWeight="bold"
+            >
+                Reviews
+            </Typography>
 
             <Stack direction={{xs: "column", md: "row"}} justifyContent={"space-around"} spacing={2} mt={2} ml={4}
                    mr={4}>
