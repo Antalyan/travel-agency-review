@@ -9,7 +9,7 @@ export const MAX_WIDTH: number = 960
 export const REVIEW_CATEGORIES: string[] = ["Overall satisfaction", "Selling vacation", "Transfer to destination", "Transfer to hotel",
     "Communication with client", "Delegate in destination", "Trips"]
 export const RATINGS: number[] = [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5]
-
+export const REVIEW_FIELDS: string[] = ["Author", "Group size", "Month of visit", "Year of visit", "Travel type", "Destination"]
 
 // MOCK DATA
 
