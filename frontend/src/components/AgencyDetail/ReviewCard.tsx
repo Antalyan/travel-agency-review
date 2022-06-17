@@ -61,14 +61,12 @@ export function ReviewCard({author, title, groupSize, travelType, destination, m
                 <Grid item xs={12} md={3} container direction="row">
                     <Stack direction={"row"} spacing={1}>
                         <EventOutlinedIcon color={month === undefined && year === undefined ? "disabled" : "primary"}/>
-                        {/*TODO: format time*/}
                         <Typography display={"block"} color={month === undefined && year === undefined ? "text.secondary" : "black"}>
                             <strong>Visited in:</strong> {month != undefined || year != undefined ?
                             ((month === undefined ? "" : month + " ") + year ?? "") : ""}
                         </Typography>
                     </Stack>
                 </Grid>
-                <Grid item md={3}/>
 
                 <Grid item xs={12} md={3} container>
                     <Stack direction={"row"} spacing={1}>
