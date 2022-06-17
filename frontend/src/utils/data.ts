@@ -84,7 +84,7 @@ export const AGENCY_DETAIL: IAgencyDetailCard =
         overallScore: 4.5,
         totalReviews: 20,
         address: "Babákova 2390/2, 148 00, Praha 4 - Chodov",
-        averageScores: [5, 4.5, 4, 3, 4.5, undefined, 3]
+        scoresInCategories: [5, 4.5, 4, 3, 4.5, undefined, 3]
     }
 
 
