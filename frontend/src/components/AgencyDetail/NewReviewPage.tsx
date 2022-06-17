@@ -15,7 +15,7 @@ import {createTheme} from "@mui/material/styles";
 import {TextFieldElem} from "../FormComponents/TextFieldElem";
 import {AutoSelect} from "../FormComponents/AutoSelect";
 import {CountryController, CountrySelect} from "../FormComponents/CountrySelector";
-import {Fragment, useState} from "react";
+import {Fragment, useEffect, useState} from "react";
 
 export function NewReviewPage() {
     const {handleSubmit, control} = useForm<IReview>();
@@ -31,10 +31,15 @@ export function NewReviewPage() {
     const [ratingState, setRatingState] = useState<(number | null | undefined)[]>
     ([undefined, undefined, undefined, undefined, undefined, undefined, undefined]);
 
-    const changeEnableState= (index: number) => {
+    const changeEnableState = (index: number) => {
         return setEnabledState(enabledState.map((val, ind) => {
             return index == ind ? !val : val
         }))
+    }
+    const changeRatingState = (index: number, newValue: number | null | undefined) => {
+        const newState = [...ratingState];
+        newState[index] = newValue;
+        setRatingState(newState);
     }
 
     return (<>
@@ -155,13 +160,15 @@ export function NewReviewPage() {
                                         <Switch size={"small"}
                                                 checked={enabledState[index]}
                                                 disabled={index == 0}
-                                                onClick={() => changeEnableState(index)}/>
+                                                onClick={() => {
+                                                    changeEnableState(index);
+                                                }}/>
                                         <Rating name={"rating" + index} precision={0.5}
                                                 size={"medium"} sx={{color: "primary.main"}}
+                                                value={enabledState[index] ? ratingState[index] : 0}
+                                                readOnly={!enabledState[index]}
                                                 onChange={(_, value) => {
-                                                    let tmpRat = ratingState;
-                                                    tmpRat[index] = value;
-                                                    setRatingState(tmpRat);
+                                                    changeRatingState(index, value);
                                                 }}/>
                                         <Typography fontSize={"large"}
                                                     align="left"
@@ -174,7 +181,7 @@ export function NewReviewPage() {
                                 <Grid item xs={12} p={2}>
                                     <TextFieldElem name={"text"+index} label={"Description"} type={"text"} size={"small"}
                                                    isRequired={index==0} sx={{pr: 4}} multiline={true} fullWidth={true}
-                                                   control={control}/>
+                                                   control={control} disabled={!enabledState[index]}/>
                                 </Grid>
                             </Fragment>
                         })}

@@ -10,11 +10,12 @@ interface TextFieldElemProps {
     control: Control<any>,
     fullWidth?: boolean,
     multiline?: boolean,
+    disabled?: boolean,
     pattern?: ValidationRule<RegExp> | undefined,
     sx?: SxProps
 }
 
-export function TextFieldElem ({name, label, type, size, isRequired, control, fullWidth, multiline, pattern, sx}: TextFieldElemProps) {
+export function TextFieldElem ({name, label, type, size, isRequired, control, fullWidth, multiline, disabled, pattern, sx}: TextFieldElemProps) {
     return <Controller
             rules={{required: isRequired, pattern: pattern}}
             render={({ field: { onChange, value }, fieldState: { error } }) => (
@@ -27,6 +28,7 @@ export function TextFieldElem ({name, label, type, size, isRequired, control, fu
                            label={label}
                            fullWidth={fullWidth}
                            multiline={multiline}
+                           disabled={disabled}
                            error = {!!error}
                            helperText={error ? error.message : null}/>)}
             name={name}
