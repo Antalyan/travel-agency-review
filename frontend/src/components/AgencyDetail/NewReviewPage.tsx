@@ -32,6 +32,10 @@ export interface IDatReview {
     texts: string
 }
 
+interface IReviewForm {
+
+}
+
 export function NewReviewPage() {
     const {handleSubmit, control} = useForm<IReview>();
     const {id} = useParams();

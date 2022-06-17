@@ -114,8 +114,7 @@ export function AgencyDetailPage() {
                 <Grid item xs={12} ml={4} mr={2}>
                    <Box>
                        <CreateOutlinedIcon display={"inline"} fontSize={"small"} color={"primary"} sx={{mr:1}}/>
-                       {/*TODO: change href*/}
-                       <Link href={"/"} display={"inline"}><strong>
+                       <Link href={"/agency/" + id + "/review"} display={"inline"}><strong>
                            Write your own review</strong>
                        </Link>
                        <Typography
