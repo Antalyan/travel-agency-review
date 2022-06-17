@@ -8,7 +8,7 @@ import {Autocomplete, Divider, Link, Rating, Stack, Tab, Tabs, TextField} from "
 import useSWR from "swr";
 import fetcher from "../../utils/fetcher";
 import {createTheme} from "@mui/material/styles";
-import {AGENCY_DETAIL, MAX_WIDTH, RATINGS, REVIEWS, TRAVEL_TYPES} from "../../utils/data";
+import {AGENCY_DETAIL, MAX_WIDTH, RATINGS, REVIEWS, TRAVEL_TYPES, URL_BASE} from "../../utils/data";
 import {AgencyDetailCard, IAgencyDetailCard} from "./AgencyDetailCard";
 import {AgencyOverviewCard, IAgencyOverviewCard} from "../MainPage/AgencyOverviewCard";
 import {AutoSelect} from "../FormComponents/AutoSelect";
@@ -32,35 +32,14 @@ export function AgencyDetailPage() {
     }
 
     // TODO: update URL
-    const [url, setUrl] = useState('http://localhost:4000/doctors');
-
-    // TODO: load data
-    // const {data, error} = useSWR(url, fetcher);
-    // if (error) console.log(error.message)
-    // if (!data) return <div>Loading...</div>;
-    // if (data) console.log(data)
-
-    // TODO: fetch data including particular reviews
-    // const url = 'http://localhost:4000/doctors/' + id;
-    // // TODO: return error or redirect if the user with this id does not exist
-    // const {data, error} = useSWR(url, fetcher);
-    // if (error) {
-    //     console.log(error.message);
-    // }
-    //
-    // if (!data) return <div>Loading...</div>;
-    // if (data) console.log(data)
-
-    // TODO: change type or add reviews (attributes), replace with data.data
-    const agency: IAgencyDetailCard = AGENCY_DETAIL;
+    const [url, setUrl] = useState(URL_BASE + "agencies" + id);
 
     const [travelTypes, setTravelTypes] = useState<string[]>();
     const [countries, setCountries] = useState<ICountryType[]>();
     const [ratings, setRatings] = useState<number[]>();
 
     useEffect(() => {
-        // TODO: change url
-        let tmpurl = 'http://localhost:4000/doctors?'
+        let tmpurl = URL_BASE + "agencies" + id;
         const names = ["traveltype", "destination", "rating"];
         const states = [travelTypes, countries, ratings];
         for (let i = 0; i < names.length; i++) {
@@ -86,6 +65,19 @@ export function AgencyDetailPage() {
         console.log(tmpurl);
         setUrl(tmpurl);
     }, [travelTypes, countries, ratings])
+
+
+    // TODO: load data
+    // const {data, error} = useSWR(url, fetcher);
+    // if (error) console.log(error.message)
+    // if (!data) return <div>Loading...</div>;
+    // if (data) console.log(data)
+
+    // TODO: change type or add reviews (attributes), replace with data.data
+    const agency: IAgencyDetailCard = AGENCY_DETAIL;
+    // let agency: IAgencyDetailCard = {
+    //
+    // };
 
     const theme = createTheme();
     return <>
