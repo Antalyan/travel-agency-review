@@ -8,6 +8,15 @@ export interface ICountryType {
     suggested?: boolean;
 }
 
+export function findCountry(name: string) {
+    for (let i = 0; i < COUNTRIES.length; i++) {
+        if (COUNTRIES[i].label == name) {
+            return COUNTRIES[i]
+        }
+    }
+    return undefined;
+}
+
 // From https://bitbucket.org/atlassian/atlaskit-mk-2/raw/4ad0e56649c3e6c973e226b7efaeb28cb240ccb0/packages/core/select/src/data/countries.js
 export const COUNTRIES: readonly ICountryType[] = [
     {code: 'AD', label: 'Andorra', phone: '376'},
