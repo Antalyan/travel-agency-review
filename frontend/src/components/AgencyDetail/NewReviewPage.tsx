@@ -57,7 +57,8 @@ export function NewReviewPage() {
 
     // TODO: check review submission
     const onSubmit = async (data: IReviewForm) => {
-        const url = URL_BASE + id + "/review";
+        const url = URL_BASE + "agencies/" + id + "/review";
+        console.log(url);
         const subject: IDatReview = {
             author: data.author,
             title: data.title,
