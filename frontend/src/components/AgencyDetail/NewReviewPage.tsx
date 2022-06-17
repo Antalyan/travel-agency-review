@@ -186,9 +186,11 @@ export function NewReviewPage() {
                             </Fragment>
                         })}
 
-                        <Button type={"submit"} onSubmit={handleSubmit(onSubmit)}>
-                            SUBMIT
-                        </Button>
+                       <Grid item p={2} container justifyContent={"flex-end"}>
+                           <Button type={"submit"} onSubmit={handleSubmit(onSubmit)} sx={{mr:4}}>
+                               SUBMIT
+                           </Button>
+                       </Grid>
                     </Grid>
                 </form>
             </Box>
