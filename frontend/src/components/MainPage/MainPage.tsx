@@ -54,7 +54,7 @@ export function MainPage() {
     if (data) console.log(data)
 
     // TODO: check load
-    let agencies: IAgencyOverviewCard[] = data.data.agencies;
+    let agencies: IAgencyOverviewCard[] = data.agencies;
     const theme = createTheme();
     return <>
         <Header/>
