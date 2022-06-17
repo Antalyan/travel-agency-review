@@ -68,7 +68,7 @@ export function AgencyDetailCard({
                                 <Typography variant="h6"
                                             align="left"
                                             color="text.primary"
-                                >OVERALL RATING
+                                >AVERAGE RATING
                                 </Typography>
                             </Stack>
                             <Divider/>
