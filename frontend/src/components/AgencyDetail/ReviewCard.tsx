@@ -68,6 +68,8 @@ export function ReviewCard({author, title, groupSize, travelType, destination, m
                     </Stack>
                 </Grid>
 
+                <Grid item md={3}/>
+
                 <Grid item xs={12} md={3} container>
                     <Stack direction={"row"} spacing={1}>
                         <FlightOutlinedIcon color={travelType === undefined ? "disabled" : "primary"}/>
