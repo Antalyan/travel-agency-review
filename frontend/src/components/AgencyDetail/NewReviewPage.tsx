@@ -10,18 +10,61 @@ import EventOutlinedIcon from '@mui/icons-material/EventOutlined';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import FlightOutlinedIcon from '@mui/icons-material/FlightOutlined';
 import {IReview} from "./ReviewCard";
-import {MAX_WIDTH, MONTHS, REVIEW_CATEGORIES, REVIEW_FIELDS, TRAVEL_TYPES} from "../../utils/data";
+import {MAX_WIDTH, MONTHS, REVIEW_CATEGORIES, REVIEW_FIELDS, TRAVEL_TYPES, URL_BASE} from "../../utils/data";
 import {createTheme} from "@mui/material/styles";
 import {TextFieldElem} from "../FormComponents/TextFieldElem";
 import {AutoSelect} from "../FormComponents/AutoSelect";
 import {CountryController, CountrySelect} from "../FormComponents/CountrySelector";
 import {Fragment, useEffect, useState} from "react";
+import axios from "axios";
+import {useNavigate, useParams} from "react-router-dom";
+import {checkStatusOK} from "../../utils/fetcher";
+
+export interface IDatReview {
+    author?: string,
+    title: string,
+    groupSize?: number,
+    travelType?: string,
+    destination?: string,
+    month?: string,
+    year?: number,
+    scores: string,
+    texts: string
+}
 
 export function NewReviewPage() {
     const {handleSubmit, control} = useForm<IReview>();
+    const {id} = useParams();
+    let navigate = useNavigate();
 
-    const onSubmit = (data: IReview) => {
+    // TODO: check review submission
+    const onSubmit = async (data: IReview) => {
         console.log(data);
+        const url = URL_BASE + id + "/review";
+        const subject: IDatReview = {
+            author: data.author,
+            title: data.title,
+            groupSize: data.groupSize,
+            travelType: data.travelType,
+            destination: data.destination?.label,
+            month: data.month,
+            year: data.year,
+            scores: JSON.stringify(data.scores),
+            texts: JSON.stringify(data.texts),
+        }
+
+        await axios.post(url, subject)
+            .then(response => {
+                console.log(response);
+                if (checkStatusOK(response.status)) {
+                    // TODO: check navigate link
+                    navigate("/");
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+                alert("Review submission failed!\n\n" + error.response.data.message)
+            });
     }
 
     const theme = createTheme();
