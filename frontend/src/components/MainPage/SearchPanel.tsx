@@ -15,6 +15,7 @@ export interface IPanelSetter {
     setFilter: React.Dispatch<React.SetStateAction<mainFilter>>
 }
 
+//deprecated for now
 export function SearchPanel({filter, setFilter}: IPanelSetter) {
     const {control, handleSubmit} = useForm<{name: string}>()
 
@@ -26,19 +27,9 @@ export function SearchPanel({filter, setFilter}: IPanelSetter) {
         });
     })
 
-    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-
-    const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
     return (
         <form onSubmit={onSubmit}>
-            <Box display={"flex"} alignItems={"center"} justifyContent={"space-between"} marginLeft={{md: "auto"}}
+            <Box display={"flex"} alignItems={"center"} justifyContent={"space-between"} pr={4} marginLeft={{md: "auto"}}
                  marginRight={{md: "auto"}} maxWidth={{md: MAX_WIDTH}}>
                 <Controller
                     control={control}
@@ -55,36 +46,8 @@ export function SearchPanel({filter, setFilter}: IPanelSetter) {
                     )}
                 />
                 <IconButton type="submit">
-                    <SearchIcon sx={{fill: "blue", fontSize: "100%", padding: 0}}/>
+                    <SearchIcon sx={{fill: "blue", fontSize: "100%"}}/>
                 </IconButton>
-                <IconButton
-                    sx={{mr: 4}}
-                    size="large"
-                    aria-label="filter area"
-                    aria-controls="menu-filter"
-                    aria-haspopup="true"
-                    onClick={handleMenu}
-                    color="inherit"
-                >
-                    <FilterList fontSize="medium"/>
-                </IconButton>
-                <Menu
-                    id="menu-filter"
-                    anchorEl={anchorEl}
-                    anchorOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                    }}
-                    transformOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'right',
-                    }}
-                    keepMounted
-                    open={Boolean(anchorEl)}
-                    onClose={handleClose}
-                >
-                    <FilterMenu filter={filter} setFilter={setFilter}/>
-                </Menu>
             </Box>
         </form>
     )
