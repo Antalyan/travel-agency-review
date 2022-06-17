@@ -1,5 +1,5 @@
 import Header from "../Header";
-import {Autocomplete, Box, Button, Grid, Rating, Stack, TextField, Typography} from "@mui/material";
+import {Autocomplete, Box, Button, Grid, Rating, Stack, Switch, TextField, Typography} from "@mui/material";
 import {Controller, useForm} from "react-hook-form";
 import {Footer} from "../Footer";
 import * as React from "react";
@@ -15,7 +15,7 @@ import {createTheme} from "@mui/material/styles";
 import {TextFieldElem} from "../FormComponents/TextFieldElem";
 import {AutoSelect} from "../FormComponents/AutoSelect";
 import {CountryController, CountrySelect} from "../FormComponents/CountrySelector";
-import {useState} from "react";
+import {Fragment, useState} from "react";
 
 export function NewReviewPage() {
     const {handleSubmit, control} = useForm<IReview>();
@@ -26,8 +26,16 @@ export function NewReviewPage() {
 
     const theme = createTheme();
 
+    // First is always required
+    const [enabledState, setEnabledState] = useState<boolean[]>([true, false, false, false, false, false, false]);
     const [ratingState, setRatingState] = useState<(number | null | undefined)[]>
     ([undefined, undefined, undefined, undefined, undefined, undefined, undefined]);
+
+    const changeEnableState= (index: number) => {
+        return setEnabledState(enabledState.map((val, ind) => {
+            return index == ind ? !val : val
+        }))
+    }
 
     return (<>
             <Header/>
@@ -55,7 +63,7 @@ export function NewReviewPage() {
                               alignItems={"center"} p={2}>
                             <Stack direction={"row"} spacing={1}>
                                 <NotesOutlinedIcon color={"primary"} fontSize={"medium"}/>
-                                <Typography display={"block"} color={"black"} fontSize={"large"} pr={3}>
+                                <Typography display={"block"} color={"black"} fontSize={"large"} pr={4}>
                                     <strong>Title:</strong>
                                 </Typography>
                             </Stack>
@@ -69,7 +77,7 @@ export function NewReviewPage() {
                               alignItems={"center"} p={2}>
                             <Stack direction={"row"} spacing={1}>
                                 <PersonOutlinedIcon color={"primary"} fontSize={"medium"}/>
-                                <Typography display={"block"} color={"black"} fontSize={"large"} pr={3}>
+                                <Typography display={"block"} color={"black"} fontSize={"large"} pr={4}>
                                     <strong>Author:</strong>
                                 </Typography>
                             </Stack>
@@ -82,7 +90,7 @@ export function NewReviewPage() {
                               alignItems={"center"} p={2}>
                             <Stack direction={"row"} spacing={1}>
                                 <GroupOutlinedIcon color={"primary"} fontSize={"medium"}/>
-                                <Typography display={"block"} color={"black"} fontSize={"large"} pr={3}>
+                                <Typography display={"block"} color={"black"} fontSize={"large"} pr={4}>
                                     <strong>Group size:</strong>
                                 </Typography>
                             </Stack>
@@ -92,11 +100,11 @@ export function NewReviewPage() {
                                            pattern={{value: /^[0-9]+$/, message: "You must insert a number!"}}/>
                         </Grid>
 
-                        <Grid item xs={12} md={6} container key={"groupSize"} justifyContent={"space-between"}
+                        <Grid item xs={12} md={6} container key={"month"} justifyContent={"space-between"}
                               alignItems={"center"} p={2}>
                             <Stack direction={"row"} spacing={1}>
                                 <EventOutlinedIcon color={"primary"} fontSize={"medium"}/>
-                                <Typography display={"block"} color={"black"} fontSize={"large"} pr={3}>
+                                <Typography display={"block"} color={"black"} fontSize={"large"} pr={4}>
                                     <strong>Month of visit:</strong>
                                 </Typography>
                             </Stack>
@@ -108,7 +116,7 @@ export function NewReviewPage() {
                               alignItems={"center"} p={2}>
                             <Stack direction={"row"} spacing={1}>
                                 <EventOutlinedIcon color={"primary"} fontSize={"medium"}/>
-                                <Typography display={"block"} color={"black"} fontSize={"large"} pr={3}>
+                                <Typography display={"block"} color={"black"} fontSize={"large"} pr={4}>
                                     <strong>Year of visit:</strong>
                                 </Typography>
                             </Stack>
@@ -122,7 +130,7 @@ export function NewReviewPage() {
                               alignItems={"center"} p={2}>
                             <Stack direction={"row"} spacing={1}>
                                 <FlightOutlinedIcon color={"primary"} fontSize={"medium"}/>
-                                <Typography display={"block"} color={"black"} fontSize={"large"} pr={3}>
+                                <Typography display={"block"} color={"black"} fontSize={"large"} pr={4}>
                                     <strong>Travel type:</strong>
                                 </Typography>
                             </Stack>
@@ -133,7 +141,7 @@ export function NewReviewPage() {
                               alignItems={"center"} p={2}>
                             <Stack direction={"row"} spacing={1}>
                                 <LocationOnOutlinedIcon color={"primary"} fontSize={"medium"}/>
-                                <Typography display={"block"} color={"black"} fontSize={"large"} pr={3}>
+                                <Typography display={"block"} color={"black"} fontSize={"large"} pr={4}>
                                     <strong>Destination:</strong>
                                 </Typography>
                             </Stack>
@@ -141,9 +149,13 @@ export function NewReviewPage() {
                         </Grid>
 
                         {REVIEW_CATEGORIES.map((category, index) => {
-                            return <>
-                                <Grid item xs={10} p={2} pr={4}>
-                                    <Stack direction={"row"} spacing={1}>
+                            return <Fragment key={category}>
+                                <Grid item xs={10} p={2}>
+                                    <Stack direction={{xs: "column", md: "row"}} spacing={1} alignContent={"center"}>
+                                        <Switch size={"small"}
+                                                checked={enabledState[index]}
+                                                disabled={index == 0}
+                                                onClick={() => changeEnableState(index)}/>
                                         <Rating name={"rating" + index} precision={0.5}
                                                 size={"medium"} sx={{color: "primary.main"}}
                                                 onChange={(_, value) => {
@@ -155,16 +167,16 @@ export function NewReviewPage() {
                                                     align="left"
                                                     color="text.primary"
                                         >
-                                            <strong>{REVIEW_CATEGORIES[index]}</strong>
+                                            <strong>{REVIEW_CATEGORIES[index] + (index == 0 ? " *" : "")}</strong>
                                         </Typography>
                                     </Stack>
                                 </Grid>
-                                <Grid item xs={12} p={2} pr={4}>
+                                <Grid item xs={12} p={2}>
                                     <TextFieldElem name={"text"+index} label={"Description"} type={"text"} size={"small"}
                                                    isRequired={index==0} sx={{pr: 4}} multiline={true} fullWidth={true}
                                                    control={control}/>
                                 </Grid>
-                            </>
+                            </Fragment>
                         })}
 
                         <Button type={"submit"} onSubmit={handleSubmit(onSubmit)}>
