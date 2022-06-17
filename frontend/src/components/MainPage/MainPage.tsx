@@ -10,7 +10,9 @@ import {mainFilter} from "./SearchPanel";
 import {Footer} from "../Footer";
 import {createTheme} from "@mui/material/styles";
 import {AgencyOverviewCard, IAgencyOverviewCard} from "./AgencyOverviewCard";
-import {AGENCIES, MAX_WIDTH} from "../../utils/data";
+import {AGENCIES, MAX_WIDTH, URL_BASE} from "../../utils/data";
+import useSWR from "swr";
+import fetcher from "../../utils/fetcher";
 
 export function MainPage() {
     const [dataFilter, setDataFilter] = useState<mainFilter>({
@@ -19,12 +21,11 @@ export function MainPage() {
         travelType: undefined
     });
 
-    // TODO: update URL
-    const [url, setUrl] = useState('http://localhost:4000/doctors');
+    const [url, setUrl] = useState(URL_BASE + 'agencies');
 
     useEffect(() => {
-        // TODO: update URL
-        let tmpurl = 'http://localhost:4000/doctors'
+        // TODO: check url after filter reset
+        let tmpurl = URL_BASE + 'agencies'
         if (dataFilter.name !== undefined || dataFilter.destination !== undefined || dataFilter.travelType !== undefined) {
             tmpurl = tmpurl + "?";
         }
@@ -47,27 +48,13 @@ export function MainPage() {
         console.log(tmpurl);
     }, [dataFilter])
 
-    // TODO: load data
-    // const {data, error} = useSWR(url, fetcher);
-    // if (error) console.log(error.message)
-    // if (!data) return <div>Loading...</div>;
-    // if (data) console.log(data)
+    const {data, error} = useSWR(url, fetcher);
+    if (error) console.log(error.message)
+    if (!data) return <div>Loading...</div>;
+    if (data) console.log(data)
 
-    // TODO: convert agency data
-    // function convertAgencyDatas() {
-    //     return data.data.map((agency) => {
-    //         return {
-    //             id: agency.id,
-    //             name: (doctor.degree ? doctor.degree + " " : "") + doctor.firstname + " " + doctor.surname,
-    //             specialization: doctor.specialization,
-    //             location: doctor.city,
-    //             actuality: doctor.actuality,
-    //         }
-    //     });
-    // }
-
-    // TODO: replace with data load (in data) above
-    let agencies: IAgencyOverviewCard[] = AGENCIES;
+    // TODO: check load
+    let agencies: IAgencyOverviewCard[] = data.data.agencies;
     const theme = createTheme();
     return <>
         <Header/>

@@ -10,6 +10,7 @@ export const REVIEW_CATEGORIES: string[] = ["Overall satisfaction", "Selling vac
     "Communication with client", "Delegate in destination", "Trips"]
 export const RATINGS: number[] = [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5]
 export const REVIEW_FIELDS: string[] = ["Author", "Group size", "Month of visit", "Year of visit", "Travel type", "Destination"]
+export const URL_BASE: string = "https://cestovkarna.herokuapp.com/"
 
 // MOCK DATA
 
