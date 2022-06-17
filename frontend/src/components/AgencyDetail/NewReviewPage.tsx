@@ -19,6 +19,7 @@ import {Fragment, useEffect, useState} from "react";
 import axios from "axios";
 import {useNavigate, useParams} from "react-router-dom";
 import {checkStatusOK} from "../../utils/fetcher";
+import {ICountryType} from "../../utils/Countries";
 
 export interface IDatReview {
     author?: string,
@@ -33,17 +34,29 @@ export interface IDatReview {
 }
 
 interface IReviewForm {
-
+    author?: string,
+    title: string,
+    groupSize?: number,
+    travelType?: string,
+    destination?: ICountryType,
+    month?: string,
+    year?: number,
+    text0: string,
+    text1: string,
+    text2: string,
+    text3: string,
+    text4: string,
+    text5: string,
+    text6: string,
 }
 
 export function NewReviewPage() {
-    const {handleSubmit, control} = useForm<IReview>();
+    const {handleSubmit, control} = useForm<IReviewForm>();
     const {id} = useParams();
     let navigate = useNavigate();
 
     // TODO: check review submission
-    const onSubmit = async (data: IReview) => {
-        console.log(data);
+    const onSubmit = async (data: IReviewForm) => {
         const url = URL_BASE + id + "/review";
         const subject: IDatReview = {
             author: data.author,
@@ -53,9 +66,10 @@ export function NewReviewPage() {
             destination: data.destination?.label,
             month: data.month,
             year: data.year,
-            scores: JSON.stringify(data.scores),
-            texts: JSON.stringify(data.texts),
+            scores: JSON.stringify(ratingState),
+            texts: JSON.stringify([data.text0, data.text1, data.text2, data.text3, data.text4, data.text5, data.text6]),
         }
+        console.log(subject);
 
         await axios.post(url, subject)
             .then(response => {
