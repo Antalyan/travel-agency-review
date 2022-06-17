@@ -43,7 +43,7 @@ export const REVIEWS: IReview[] = [
         title: "Best holidays ever! Pens for free!",
         groupSize: 1,
         travelType: "Other",
-        destination: "Chile",
+        destination: {code: 'CL', label: 'Chile', phone: '56'},
         month: "April",
         year: 2011,
         scores: [5, 4.5, 2, undefined, undefined, 4, 5],

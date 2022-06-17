@@ -10,13 +10,14 @@ import FlightOutlinedIcon from '@mui/icons-material/FlightOutlined';
 import {Box, Card, CardContent, Container, Divider, Rating, Stack} from "@mui/material";
 import {MAX_WIDTH, REVIEW_CATEGORIES} from "../../utils/data";
 import {useState} from "react";
+import {ICountryType} from "../../utils/Countries";
 
 export interface IReview {
     author?: string,
     title: string,
     groupSize?: number,
     travelType?: string,
-    destination?: string,
+    destination?: ICountryType,
     month?: string,
     year?: number,
     scores: (number | undefined)[],
@@ -82,7 +83,19 @@ export function ReviewCard({author, title, groupSize, travelType, destination, m
                     <Stack direction={"row"} spacing={1}>
                         <LocationOnOutlinedIcon color={destination === undefined ? "disabled" : "primary"}/>
                         <Typography display={"block"} color={destination === undefined ? "text.secondary" : "black"}>
-                            <strong>Destination:</strong> {destination ?? ""}
+                            <strong>Destination:</strong>
+                        </Typography>
+                        {destination != undefined && <Box sx={{'& > img': {flexShrink: 0}}}>
+                            <img
+                                loading="lazy"
+                                width="20"
+                                src={`https://flagcdn.com/w20/${destination.code.toLowerCase()}.png`}
+                                srcSet={`https://flagcdn.com/w40/${destination.code.toLowerCase()}.png 2x`}
+                                alt=""
+                            />
+                        </Box>}
+                        <Typography display={"block"} color={destination === undefined ? "text.secondary" : "black"}>
+                           {destination?.label ?? ""}
                         </Typography>
                     </Stack>
                 </Grid>

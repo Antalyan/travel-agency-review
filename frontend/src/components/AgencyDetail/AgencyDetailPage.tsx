@@ -11,15 +11,16 @@ import {createTheme} from "@mui/material/styles";
 import {AGENCY_DETAIL, MAX_WIDTH, RATINGS, REVIEWS, TRAVEL_TYPES} from "../../utils/data";
 import {AgencyDetailCard, IAgencyDetailCard} from "./AgencyDetailCard";
 import {AgencyOverviewCard, IAgencyOverviewCard} from "../MainPage/AgencyOverviewCard";
-import {AutoSelect} from "../MainPage/AutoSelect";
+import {AutoSelect} from "../FormComponents/AutoSelect";
 import {Controller, useForm} from "react-hook-form";
 import {IFilter} from "../MainPage/FilterMenu";
 import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
-import {CountrySelect, COUNTRIES, ICountryType} from "../../utils/Countries";
+import {COUNTRIES, ICountryType} from "../../utils/Countries";
 import {useEffect, useState} from "react";
 import {mainFilter} from "../MainPage/SearchPanel";
 import Grid from "@mui/material/Grid";
 import {IReview, ReviewCard} from "./ReviewCard";
+import {CountrySelect} from "../FormComponents/CountrySelector";
 
 export type detailFilter = { rating?: string, destination?: string, travelType?: string }
 

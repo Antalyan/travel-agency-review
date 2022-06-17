@@ -1,12 +1,13 @@
 import {Button, Grid, Stack, Typography} from "@mui/material";
 import {useForm} from "react-hook-form";
 import * as React from "react";
-import {AutoSelect} from "./AutoSelect";
+import {AutoSelect} from "../FormComponents/AutoSelect";
 import {IPanelSetter} from "./SearchPanel";
 import useSWR from "swr";
 import {fetcher} from "../../utils/fetcher";
-import {CountryController, ICountryType} from "../../utils/Countries";
+import {ICountryType} from "../../utils/Countries";
 import {GRADIENT, TRAVEL_TYPES} from "../../utils/data";
+import {CountryController} from "../FormComponents/CountrySelector";
 
 export interface IFilter {
     destination?: ICountryType,
@@ -34,9 +35,9 @@ export function FilterMenu({filter, setFilter}: IPanelSetter) {
             </Typography>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Stack spacing={2} margin={2}>
-                    <CountryController control={control}/>
-                    <AutoSelect control={control} id="travel-type-select" name="travelType" label="Travel Type"
-                                options={TRAVEL_TYPES}/>
+                    <CountryController control={control} sx={{width: 200}} size={"medium"}/>
+                    <AutoSelect control={control} name="travelType" label="Travel Type" size={"medium"}
+                                options={TRAVEL_TYPES} sx={{width: 200}}/>
                     <Grid container justifyContent="center">
                         <Button variant='contained' type={'submit'} color={'primary'} onSubmit={handleSubmit(onSubmit)}>
                             Nastavit
