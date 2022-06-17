@@ -17,7 +17,7 @@ export interface IAgencyDetailCard {
     overallScore: number,
     totalReviews: number
     address: string,
-    averageScores: (number | undefined)[]
+    scoresInCategories: (number | undefined)[]
 }
 
 export function AgencyDetailCard({
@@ -27,7 +27,7 @@ export function AgencyDetailCard({
                                      overallScore,
                                      totalReviews,
                                      address,
-                                     averageScores
+                                     scoresInCategories
                                  }: IAgencyDetailCard) {
     return (
         <Grid container justifyContent={"center"} maxWidth={{md: MAX_WIDTH}} marginLeft={{md: "auto"}}
@@ -72,7 +72,7 @@ export function AgencyDetailCard({
                                 </Typography>
                             </Stack>
                             <Divider/>
-                            {averageScores.map((score, index) => {
+                            {scoresInCategories.map((score, index) => {
                                 return <Stack direction={"row"} alignItems={"center"} spacing={2} key={"score" + index}>
                                     <Rating name={"rating" + index} value={score} precision={0.5}
                                             readOnly size={"medium"}

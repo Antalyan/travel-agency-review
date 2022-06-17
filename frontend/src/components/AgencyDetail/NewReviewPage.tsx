@@ -19,7 +19,7 @@ import {Fragment, useEffect, useState} from "react";
 import axios from "axios";
 import {useNavigate, useParams} from "react-router-dom";
 import {checkStatusOK} from "../../utils/fetcher";
-import {ICountryType} from "../../utils/Countries";
+import {findCountry, ICountryType} from "../../utils/Countries";
 
 export interface IDatReview {
     author?: string,
@@ -70,7 +70,6 @@ export function NewReviewPage() {
             scores: JSON.stringify(ratingState),
             texts: JSON.stringify([data.text0, data.text1, data.text2, data.text3, data.text4, data.text5, data.text6]),
         }
-        console.log(subject);
 
         await axios.post(url, subject)
             .then(response => {
