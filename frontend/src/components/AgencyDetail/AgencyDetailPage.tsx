@@ -200,6 +200,7 @@ export function AgencyDetailPage() {
                         sx={{width: 200}}
                         renderInput={(params) =>
                             <TextField {...params} name={"rating"} label={"Filter by rating"}/>}
+                        getOptionLabel={(option) => option.toString()}
                         onChange={(event, newValue) => {
                             setRatings(newValue);
                         }}/>
