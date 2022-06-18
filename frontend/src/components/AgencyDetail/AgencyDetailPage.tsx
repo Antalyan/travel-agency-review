@@ -67,18 +67,9 @@ export function AgencyDetailPage() {
         const states = [travelTypes, countries, ratings];
         for (let i = 0; i < names.length; i++) {
             // @ts-ignore
-            if (states[i]?.length && states[i]?.length > 0) {
-                tmpurl += (names[i] + "=");
-                // @ts-ignore
-                for (const name of states[i]) {
-                    if (i == 1) {
-                        // @ts-ignore
-                        tmpurl += (name.label + "|");
-                    } else {
-                        tmpurl += (name + "|");
-                    }
-                }
-                tmpurl = tmpurl.substring(0, tmpurl.length - 1)
+            console.log(states[i]);
+            if (states[i] != null && states[i] != undefined) {
+                tmpurl += (names[i] + "=" + states[i]);
                 tmpurl = tmpurl + "&"
             }
         }
@@ -159,6 +150,17 @@ export function AgencyDetailPage() {
                 </Grid>
                 <Stack direction={{xs: "column", md: "row"}} justifyContent={"space-around"} spacing={2} mt={2} ml={4}
                        mr={4}>
+
+                    <Autocomplete
+                        id={id}
+                        options={TRAVEL_TYPES}
+                        sx={{width: 200}}
+                        renderInput={(params) =>
+                            <TextField {...params} name={"travelType"} label={"Filter by travel type"}/>}
+                        onChange={(event, newValue) => {
+                            setTravelTypes(newValue);
+                        }}/>
+
                     <Autocomplete
                         id="country-select"
                         sx={{width: 200}}
@@ -191,16 +193,6 @@ export function AgencyDetailPage() {
                         onChange={(event, newValue) =>
                             setCountries(newValue)}
                     />
-
-                    <Autocomplete
-                        id={id}
-                        options={TRAVEL_TYPES}
-                        sx={{width: 200}}
-                        renderInput={(params) =>
-                            <TextField {...params} name={"travelType"} label={"Filter by travel type"}/>}
-                        onChange={(event, newValue) => {
-                            setTravelTypes(newValue);
-                        }}/>
 
                     <Autocomplete
                         id={id}
