@@ -83,18 +83,18 @@ export function NewReviewPage() {
 
         console.log(subject);
 
-        // await axios.post(url, subject)
-        //     .then(response => {
-        //         console.log(response);
-        //         if (checkStatusOK(response.status)) {
-        //             alert("Review successfully created!")
-        //             navigate("/");
-        //         }
-        //     })
-        //     .catch((error) => {
-        //         console.error(error);
-        //         alert("Review submission failed!\n\n" + error.response.data.message)
-        //     });
+        await axios.post(url, subject)
+            .then(response => {
+                console.log(response);
+                if (checkStatusOK(response.status)) {
+                    alert("Review successfully created!")
+                    navigate("/");
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+                alert("Review submission failed!\n\n" + error.response.data.message)
+            });
     }
 
     const theme = createTheme();
