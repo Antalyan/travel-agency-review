@@ -57,9 +57,9 @@ export function AgencyDetailPage() {
     // TODO: update URL
     const [url, setUrl] = useState(URL_BASE + "agencies/" + id);
 
-    const [travelTypes, setTravelTypes] = useState<string[]>();
-    const [countries, setCountries] = useState<ICountryType[]>();
-    const [ratings, setRatings] = useState<number[]>();
+    const [travelTypes, setTravelTypes] = useState<string | null>();
+    const [countries, setCountries] = useState<ICountryType | null>();
+    const [ratings, setRatings] = useState<number | null>();
 
     useEffect(() => {
         let tmpurl = URL_BASE + "agencies/" + id + "?";
@@ -164,7 +164,6 @@ export function AgencyDetailPage() {
                         sx={{width: 200}}
                         options={COUNTRIES}
                         autoHighlight
-                        multiple
                         getOptionLabel={(option) => option.label}
                         renderOption={(props, option) => (
                             <Box component="li" sx={{'& > img': {mr: 2, flexShrink: 0}}} {...props}>
@@ -189,37 +188,28 @@ export function AgencyDetailPage() {
                                 }}
                             />
                         )}
-                        onChange={(event, newValue) => {
-                            setCountries([
-                                ...newValue
-                            ]);
-                        }}
+                        onChange={(event, newValue) =>
+                            setCountries(newValue)}
                     />
 
                     <Autocomplete
                         id={id}
-                        multiple
                         options={TRAVEL_TYPES}
                         sx={{width: 200}}
                         renderInput={(params) =>
                             <TextField {...params} name={"travelType"} label={"Filter by travel type"}/>}
                         onChange={(event, newValue) => {
-                            setTravelTypes([
-                                ...newValue
-                            ]);
+                            setTravelTypes(newValue);
                         }}/>
 
                     <Autocomplete
                         id={id}
-                        multiple
                         options={RATINGS}
                         sx={{width: 200}}
                         renderInput={(params) =>
                             <TextField {...params} name={"rating"} label={"Filter by rating"}/>}
                         onChange={(event, newValue) => {
-                            setRatings([
-                                ...newValue
-                            ]);
+                            setRatings(newValue);
                         }}/>
                 </Stack>
             </Grid>
