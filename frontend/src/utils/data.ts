@@ -6,11 +6,21 @@ export const TRAVEL_TYPES: string[] = ["Holiday", "Cruise", "Sightseeing tour", 
 export const MONTHS: string[] = ["January", "February", "March", "April", "May", "June", "July", "September", "October", "November", "December"]
 export const GRADIENT: string = 'radial-gradient(circle, rgba(225,233,238,1) 0%, rgba(0,137,255,1) 100%)'
 export const MAX_WIDTH: number = 960
-export const REVIEW_CATEGORIES: string[] = ["Overall satisfaction", "Selling vacation", "Transfer to destination", "Transfer to hotel",
+export const REVIEW_CATEGORIES: string[] = ["Overall satisfaction", "Vacation seller", "Transfer to destination", "Transfer to hotel",
     "Communication with client", "Delegate in destination", "Trips"]
 export const RATINGS: number[] = [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5]
 export const REVIEW_FIELDS: string[] = ["Author", "Group size", "Month of visit", "Year of visit", "Travel type", "Destination"]
 export const URL_BASE: string = "https://cestovkarna.herokuapp.com/"
+
+export const REVIEW_DESCRIPTIONS: string[] = [
+    "overall satisfaction (would you recommend the travel agency?)",
+    "selling the vacation (friendliness, professionality, helpfulness...)",
+    "transfer to destination (bus/plane comfort, services provided, delay...)",
+    "transfer to hotel (comfort, delay...)",
+    "communication with client (helpfulness, professionality, accuracy...)",
+    "delegate in destination (friendliness, professionality, helpfulness...)",
+    "trips (offer, realisation...)",
+]
 
 // MOCK DATA
 

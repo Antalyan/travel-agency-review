@@ -10,7 +10,15 @@ import EventOutlinedIcon from '@mui/icons-material/EventOutlined';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import FlightOutlinedIcon from '@mui/icons-material/FlightOutlined';
 import {IReview} from "./ReviewCard";
-import {MAX_WIDTH, MONTHS, REVIEW_CATEGORIES, REVIEW_FIELDS, TRAVEL_TYPES, URL_BASE} from "../../utils/data";
+import {
+    MAX_WIDTH,
+    MONTHS,
+    REVIEW_CATEGORIES,
+    REVIEW_DESCRIPTIONS,
+    REVIEW_FIELDS,
+    TRAVEL_TYPES,
+    URL_BASE
+} from "../../utils/data";
 import {createTheme} from "@mui/material/styles";
 import {TextFieldElem} from "../FormComponents/TextFieldElem";
 import {AutoSelect} from "../FormComponents/AutoSelect";
@@ -240,7 +248,7 @@ export function NewReviewPage() {
                                     </Stack>
                                 </Grid>
                                 <Grid item xs={12} p={2}>
-                                    <TextFieldElem name={"text"+index} label={"Description"} type={"text"} size={"small"}
+                                    <TextFieldElem name={"text"+index} label={"Describe " + REVIEW_DESCRIPTIONS[index]} type={"text"} size={"small"}
                                                    isRequired={index==0} sx={{pr: 4}} multiline={true} fullWidth={true}
                                                    control={control} disabled={!enabledState[index]}/>
                                 </Grid>
