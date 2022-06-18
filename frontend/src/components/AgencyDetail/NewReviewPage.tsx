@@ -67,6 +67,7 @@ export function NewReviewPage() {
     const onSubmit = async (data: IReviewForm) => {
         const url = URL_BASE + "agencies/" + id + "/review";
         console.log(url);
+
         const subject: IDatReview = {
             author: data.author,
             title: data.title,
@@ -75,22 +76,25 @@ export function NewReviewPage() {
             destination: data.destination?.label,
             month: data.month,
             year: data.year,
-            scores: JSON.stringify(ratingState),
+            scores: JSON.stringify(ratingState.map((rate, index) =>
+                rate === undefined && enabledState[index] ? 0 : rate)),
             texts: JSON.stringify([data.text0, data.text1, data.text2, data.text3, data.text4, data.text5, data.text6]),
         }
 
-        await axios.post(url, subject)
-            .then(response => {
-                console.log(response);
-                if (checkStatusOK(response.status)) {
-                    // TODO: check navigate link
-                    navigate("/");
-                }
-            })
-            .catch((error) => {
-                console.error(error);
-                alert("Review submission failed!\n\n" + error.response.data.message)
-            });
+        console.log(subject);
+
+        // await axios.post(url, subject)
+        //     .then(response => {
+        //         console.log(response);
+        //         if (checkStatusOK(response.status)) {
+        //             alert("Review successfully created!")
+        //             navigate("/");
+        //         }
+        //     })
+        //     .catch((error) => {
+        //         console.error(error);
+        //         alert("Review submission failed!\n\n" + error.response.data.message)
+        //     });
     }
 
     const theme = createTheme();
