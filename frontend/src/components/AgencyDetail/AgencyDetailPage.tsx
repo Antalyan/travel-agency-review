@@ -57,19 +57,25 @@ export function AgencyDetailPage() {
     // TODO: update URL
     const [url, setUrl] = useState(URL_BASE + "agencies/" + id);
 
-    const [travelTypes, setTravelTypes] = useState<string | null>();
-    const [countries, setCountries] = useState<ICountryType | null>();
-    const [ratings, setRatings] = useState<number | null>();
+    const [travelTypeState, setTravelTypeState] = useState<string | null>();
+    const [countryState, setCountryState] = useState<ICountryType | null>();
+    const [ratingsState, setRatingsState] = useState<number | null>();
 
     useEffect(() => {
         let tmpurl = URL_BASE + "agencies/" + id + "?";
         const names = ["traveltype", "destination", "rating"];
-        const states = [travelTypes, countries, ratings];
+        const states = [travelTypeState, countryState, ratingsState];
         for (let i = 0; i < names.length; i++) {
             // @ts-ignore
             console.log(states[i]);
             if (states[i] != null && states[i] != undefined) {
-                tmpurl += (names[i] + "=" + states[i]);
+                tmpurl += (names[i] + "=");
+                if (i == 1 && states[i] != null && states[i] != undefined) {
+                    // @ts-ignore
+                    tmpurl += states[i].label;
+                } else {
+                    tmpurl += states[i];
+                }
                 tmpurl = tmpurl + "&"
             }
         }
@@ -78,7 +84,7 @@ export function AgencyDetailPage() {
         }
         console.log(tmpurl);
         setUrl(tmpurl);
-    }, [travelTypes, countries, ratings])
+    }, [travelTypeState, countryState, ratingsState])
 
 
     // TODO: load data
@@ -153,16 +159,18 @@ export function AgencyDetailPage() {
 
                     <Autocomplete
                         id={id}
+                        value={travelTypeState}
                         options={TRAVEL_TYPES}
                         sx={{width: 200}}
                         renderInput={(params) =>
                             <TextField {...params} name={"travelType"} label={"Filter by travel type"}/>}
                         onChange={(event, newValue) => {
-                            setTravelTypes(newValue);
+                            setTravelTypeState(newValue);
                         }}/>
 
                     <Autocomplete
                         id="country-select"
+                        value={countryState}
                         sx={{width: 200}}
                         options={COUNTRIES}
                         autoHighlight
@@ -191,18 +199,19 @@ export function AgencyDetailPage() {
                             />
                         )}
                         onChange={(event, newValue) =>
-                            setCountries(newValue)}
+                            setCountryState(newValue)}
                     />
 
                     <Autocomplete
                         id={id}
+                        value={ratingsState}
                         options={RATINGS}
                         sx={{width: 200}}
                         renderInput={(params) =>
                             <TextField {...params} name={"rating"} label={"Filter by rating"}/>}
                         getOptionLabel={(option) => option.toString()}
                         onChange={(event, newValue) => {
-                            setRatings(newValue);
+                            setRatingsState(newValue);
                         }}/>
                 </Stack>
             </Grid>
