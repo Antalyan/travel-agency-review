@@ -44,26 +44,26 @@ export function ReviewCard({author, title, groupSize, travelType, destination, m
                 </Grid>
                 <Grid item xs={12} md={3} container>
                     <Stack direction={"row"} spacing={1}>
-                        <PersonOutlinedIcon color={author === undefined ? "disabled" : "primary"}/>
-                        <Typography display={"block"} color={author === undefined ? "text.secondary" : "black"}>
+                        <PersonOutlinedIcon color={author == undefined ? "disabled" : "primary"}/>
+                        <Typography display={"block"} color={author == undefined ? "text.secondary" : "black"}>
                             <strong>Author:</strong> {author ?? ""}
                         </Typography>
                     </Stack>
                 </Grid>
                 <Grid item xs={12} md={3} container>
                     <Stack direction={"row"} spacing={1}>
-                        <GroupOutlinedIcon color={groupSize === undefined ? "disabled" : "primary"}/>
-                        <Typography display={"block"} color={groupSize === undefined ? "text.secondary" : "black"}>
+                        <GroupOutlinedIcon color={groupSize == undefined ? "disabled" : "primary"}/>
+                        <Typography display={"block"} color={groupSize == undefined ? "text.secondary" : "black"}>
                             <strong>Group size:</strong> {groupSize ?? ""}
                         </Typography>
                     </Stack>
                 </Grid>
                 <Grid item xs={12} md={3} container direction="row">
                     <Stack direction={"row"} spacing={1}>
-                        <EventOutlinedIcon color={month === undefined && year === undefined ? "disabled" : "primary"}/>
-                        <Typography display={"block"} color={month === undefined && year === undefined ? "text.secondary" : "black"}>
+                        <EventOutlinedIcon color={month == undefined && year == undefined ? "disabled" : "primary"}/>
+                        <Typography display={"block"} color={month == undefined && year == undefined ? "text.secondary" : "black"}>
                             <strong>Visited in:</strong> {month != undefined || year != undefined ?
-                            ((month === undefined ? "" : month + " ") + year ?? "") : ""}
+                            ((month == undefined ? "" : month + " ") + year ?? "") : ""}
                         </Typography>
                     </Stack>
                 </Grid>
@@ -72,8 +72,8 @@ export function ReviewCard({author, title, groupSize, travelType, destination, m
 
                 <Grid item xs={12} md={3} container>
                     <Stack direction={"row"} spacing={1}>
-                        <FlightOutlinedIcon color={travelType === undefined ? "disabled" : "primary"}/>
-                        <Typography display={"block"} color={travelType === undefined ? "text.secondary" : "black"}>
+                        <FlightOutlinedIcon color={travelType == undefined ? "disabled" : "primary"}/>
+                        <Typography display={"block"} color={travelType == undefined ? "text.secondary" : "black"}>
                             <strong>Travel type:</strong> {travelType ?? ""}
                         </Typography>
                     </Stack>
@@ -81,8 +81,8 @@ export function ReviewCard({author, title, groupSize, travelType, destination, m
 
                 <Grid item xs={12} md={6} container>
                     <Stack direction={"row"} spacing={1}>
-                        <LocationOnOutlinedIcon color={destination === undefined ? "disabled" : "primary"}/>
-                        <Typography display={"block"} color={destination === undefined ? "text.secondary" : "black"}>
+                        <LocationOnOutlinedIcon color={destination == undefined ? "disabled" : "primary"}/>
+                        <Typography display={"block"} color={destination == undefined ? "text.secondary" : "black"}>
                             <strong>Destination:</strong>
                         </Typography>
                         {destination != undefined && <Box sx={{'& > img': {flexShrink: 0}}}>
@@ -94,7 +94,7 @@ export function ReviewCard({author, title, groupSize, travelType, destination, m
                                 alt=""
                             />
                         </Box>}
-                        <Typography display={"block"} color={destination === undefined ? "text.secondary" : "black"}>
+                        <Typography display={"block"} color={destination == undefined ? "text.secondary" : "black"}>
                            {destination?.label ?? ""}
                         </Typography>
                     </Stack>
@@ -113,7 +113,7 @@ export function ReviewCard({author, title, groupSize, travelType, destination, m
                     </Stack>
                 </Grid>
                 <Grid item xs={10} mt={2}
-                      display={texts[0] === undefined ? "none" : "block"}>
+                      display={texts[0] == undefined ? "none" : "block"}>
                     <Typography variant={"body2"}>
                         {texts[0]}
                     </Typography>
@@ -135,7 +135,7 @@ export function ReviewCard({author, title, groupSize, travelType, destination, m
                             </Stack>
                         </Grid>}
                         <Grid item xs={10} mt={2}
-                              display={texts[index] === undefined ? "none" : "block"}>
+                              display={texts[index] == undefined ? "none" : "block"}>
                             <Typography variant={"body2"}>
                                 {texts[index]}
                             </Typography>
