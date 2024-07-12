@@ -6,4 +6,4 @@ Inspired by some of the older projects.
 
 The backend project with API is currently not available.
 
-
+Techstack: React – MUI, react-hook-form, typescript
